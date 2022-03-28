@@ -3,7 +3,7 @@ from keras import layers
 
 
 class Model:
-    def __init__(self, input_shape = 10, encoding_size=32, output_shape=4):
+    def __init__(self, input_shape=10, encoding_size=32, output_shape=4):
         input_layer = keras.Input(shape=(input_shape,))
         encoded = layers.Dense(encoding_size, activation='relu')(input_layer)
         decoded = layers.Dense(output_shape, activation='relu')(encoded)
@@ -15,6 +15,7 @@ class Model:
         self.autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
 
     def fit(self):
-
+        return 0
 
     def predict(self):
+        return 0
