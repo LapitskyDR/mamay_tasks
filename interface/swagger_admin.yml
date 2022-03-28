@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  description: This is documentation for REST api of metodology_model servise.
+  version: "1.5.0"
+  title: REST servise for metodology_model
+consumes:
+#  - application/json
+  - multipart/form-dat
+produces:
+  - application/json
+
+basePath: /api_admin
+
+paths:
+#  /predict:
+#      post:
+#        operationId: interface.rest_api.predict
+#        tags:
+#          - predict
+#        summary: Calculate predict based on user ans.
+#        description: Calculate predict based on user ans.
+#        parameters:
+#          - name: input
+#            in: body
+#            required: true
+#            schema:
+#              type: array
+#              items:
+#                $ref: '#/definitions/predict_query'
+#
+#        responses:
+#          200:
+#            description: Prediction successfully made.
+#            schema:
+#              $ref: '#/definitions/prediction_result'
+  /upload:
+       post:
+         operationId: interface.rest_api.upload
+         summary: Uploads a file.
+         parameters:
+           - name: upfile
+             in: formData
+             type: file
+             description: example.txt
+
+         responses:
+           200:
+             description: Prediction successfully made.
+             schema:
+               $ref: '#/definitions/prediction_result'
+
+definitions:
+#  predict_query:
+#      type: object
+#      required:
+#        - ans
+#      properties:
+#        ans:
+#          type: integer
+#          description: answer on metodology question.
+#          example: 1
+  prediction_result:
+      type: object
+      required:
+        - person_profile
+      properties:
+        person_profile:
+          type: integer
+          description: person definition vec
+          example: [35, 25, 46, 89]
