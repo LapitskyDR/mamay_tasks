@@ -32,6 +32,29 @@ paths:
             schema:
               $ref: '#/definitions/prediction_result'
 
+  /upload:
+      put:
+        operationId: interface.rest_api.upload_table
+        tags:
+          - upload
+        summary: Upload Table in DB.
+        parameters:
+          - name: upfile
+            in: formData
+            type: file
+            description: example.xlsx
+            required: True
+
+          - name: table_name
+            in: query
+            description: uploding table name (Коэффициенты/Описание)
+            type: string
+            required: True
+
+        responses:
+          200:
+            description: Upload successfully made.
+
 definitions:
   predict_query:
       type: array
