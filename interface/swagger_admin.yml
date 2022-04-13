@@ -4,7 +4,7 @@ info:
   version: "1.5.0"
   title: REST servise for metodology_model
 consumes:
-#  - application/json
+  - application/json
   - multipart/form-dat
 produces:
   - application/json
@@ -12,53 +12,33 @@ produces:
 basePath: /api_admin
 
 paths:
-#  /predict:
-#      post:
-#        operationId: interface.rest_api.predict
-#        tags:
-#          - predict
-#        summary: Calculate predict based on user ans.
-#        description: Calculate predict based on user ans.
-#        parameters:
-#          - name: input
-#            in: body
-#            required: true
-#            schema:
-#              type: array
-#              items:
-#                $ref: '#/definitions/predict_query'
-#
-#        responses:
-#          200:
-#            description: Prediction successfully made.
-#            schema:
-#              $ref: '#/definitions/prediction_result'
-  /upload:
-       post:
-         operationId: interface.rest_api.upload
-         summary: Uploads a file.
-         parameters:
-           - name: upfile
-             in: formData
-             type: file
-             description: example.txt
+  /predict:
+      post:
+        operationId: interface.rest_api.predict
+        tags:
+          - predict
+        summary: Calculate predict based on user ans.
+        description: Calculate predict based on user ans.
+        parameters:
+          - name: input
+            in: body
+            required: true
+            schema:
+              $ref: '#/definitions/predict_query'
 
-         responses:
-           200:
-             description: Prediction successfully made.
-             schema:
-               $ref: '#/definitions/prediction_result'
+        responses:
+          200:
+            description: Prediction successfully made.
+            schema:
+              $ref: '#/definitions/prediction_result'
 
 definitions:
-#  predict_query:
-#      type: object
-#      required:
-#        - ans
-#      properties:
-#        ans:
-#          type: integer
-#          description: answer on metodology question.
-#          example: 1
+  predict_query:
+      type: array
+      items:
+        type: integer
+      description: answers on metodology question.
+      example: [1, 0, 1]
   prediction_result:
       type: object
       required:
