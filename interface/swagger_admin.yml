@@ -20,7 +20,7 @@ paths:
         summary: Calculate predict based on user ans.
         description: Calculate predict based on user ans.
         parameters:
-          - name: input
+          - name: answers
             in: body
             required: true
             schema:
