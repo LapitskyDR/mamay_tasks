@@ -65,9 +65,19 @@ definitions:
   prediction_result:
       type: object
       required:
+        - success
         - person_profile
       properties:
+        success:
+          type: boolean
+          description: Status of api call.
+          example: True
+
         person_profile:
           type: integer
           description: person definition vec
           example: [35, 25, 46, 89]
+
+        issues:
+          type: object
+          description: List of issues for well. Shows if prediction is unsucessful

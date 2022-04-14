@@ -7,14 +7,28 @@ def predict(answers):
     """
     :param json answers:
     :return:
+    :raise:
+        400 - bad input
+        401 - bad DB connexion
     """
-    answers = np.array(json.loads(answers))
+    result = {}
+    try:
+        answers = np.array(json.loads(answers))
+    except Exception as e:
+        result['issues'] = 400
+        return result
     loader = Loader()
-    koefs = loader.get_table('Koefs')
+    try:
+        koefs = loader.get_table('Koefs')
+    except Exception as e:
+        result['issues'] = 401
+        return result
     assert koefs.shape[0] == len(answers)
     res = koefs.apply(lambda x: x*answers)
     vector = res.sum()
-    return vector.to_json(orient='records')
+    result['success'] = True
+    result['vector'] = vector.to_json(orient='records')
+    return result
 
 
 def upload_table(upfile, table_name):
