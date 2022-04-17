@@ -91,6 +91,7 @@ definitions:
       required:
         - success
         - person_profile
+        - descriptions
       properties:
         success:
           type: boolean
@@ -102,6 +103,12 @@ definitions:
           description: person definition vec
           example: [35, 25, 46, 89]
 
+        descriptions:
+          type: object
+          description: List of profile descriptions
+          example: ['description1', 'description2', 'description3', 'description4']
+
         issues:
           type: object
           description: List of issues for well. Shows if prediction is unsucessful
+          example: [35, 25, 46, 89]
