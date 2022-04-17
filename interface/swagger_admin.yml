@@ -55,6 +55,30 @@ paths:
           200:
             description: Upload successfully made.
 
+  /fit:
+    put:
+      operationId: interface.rest_api.fit
+      tags:
+        - fit
+      summary: Upload Table in DB.
+      parameters:
+        - name: upfile
+          in: formData
+          type: file
+          description: example.xlsx
+          required: True
+
+        - name: out_name
+          in: query
+          description: target column name
+          default: 'out_val'
+          type: string
+          required: True
+
+      responses:
+        200:
+          description: Upload successfully made.
+
 definitions:
   predict_query:
       type: array
@@ -67,6 +91,7 @@ definitions:
       required:
         - success
         - person_profile
+        - descriptions
       properties:
         success:
           type: boolean
@@ -78,6 +103,12 @@ definitions:
           description: person definition vec
           example: [35, 25, 46, 89]
 
+        descriptions:
+          type: object
+          description: List of profile descriptions
+          example: ['description1', 'description2', 'description3', 'description4']
+
         issues:
           type: object
           description: List of issues for well. Shows if prediction is unsucessful
+          example: [35, 25, 46, 89]
