@@ -58,14 +58,21 @@ def upload_table(upfile, table_name):
         raise KeyError(f'Undefined table {table_name}')
     loader = Loader()
     loader.post_tabel_by_xls(upfile, table_name)
+    return 'table successfully upload'
 
 
 def fit(upfile, out_name):
-    data = pd.read_excel(upfile)
-    print(data.columns)
-    in_val = data.loc[:, data.columns != out_name].values
-    out_val = data[out_name].values.reshape(-1, 1)
-    model = DecisionTreeRegressor()
-    model.fit(in_val, out_val)
-    # bin_model = pickle.dumps(model)
-    joblib.dump(model, './{}.joblib'.format('model'))
+    try:
+        data = pd.read_excel(upfile)
+        in_val = data.loc[:, data.columns != out_name].values
+        out_val = data[out_name].values.reshape(-1, 1)
+        model = DecisionTreeRegressor()
+        model.fit(in_val, out_val)
+        # bin_model = pickle.dumps(model)
+        joblib.dump(model, './{}.joblib'.format('model'))
+        global MODEL
+        MODEL = model
+        return 'model successfully fit'
+    except Exception as e:
+        return json.dumps(e)
+
