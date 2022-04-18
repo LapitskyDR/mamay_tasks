@@ -69,7 +69,7 @@ def fit(upfile, out_name):
         model = DecisionTreeRegressor()
         model.fit(in_val, out_val)
         # bin_model = pickle.dumps(model)
-        joblib.dump(model, './{}.joblib'.format('model'))
+        # joblib.dump(model, '{}.joblib'.format('model'))
         global MODEL
         MODEL = model
         return 'model successfully fit'
