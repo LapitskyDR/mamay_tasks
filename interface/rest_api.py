@@ -64,15 +64,20 @@ def upload_table(upfile, table_name):
 def fit(upfile, out_name):
     try:
         data = pd.read_excel(upfile)
+    except Exception:
+        return 401
+    try:
         in_val = data.loc[:, data.columns != out_name].values
+    except Exception:
+        return 4011
+    try:
         out_val = data[out_name].values.reshape(-1, 1)
-        model = DecisionTreeRegressor()
-        model.fit(in_val, out_val)
-        # bin_model = pickle.dumps(model)
-        # joblib.dump(model, '{}.joblib'.format('model'))
-        global MODEL
-        MODEL = model
-        return 'model successfully fit'
-    except Exception as e:
-        return json.dumps(e)
-
+    except Exception:
+        return 4012
+    model = DecisionTreeRegressor()
+    model.fit(in_val, out_val)
+    # bin_model = pickle.dumps(model)
+    # joblib.dump(model, '{}.joblib'.format('model'))
+    global MODEL
+    MODEL = model
+    return 'model successfully fit'
