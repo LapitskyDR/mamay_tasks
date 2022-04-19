@@ -5,5 +5,7 @@ sqlalchemy
 connexion[swagger-ui]==2.13.0
 keras==2.8.0
 pandas==1.3.5
+xlrd
+openpyxl
 psycopg2
 Gunicorn
